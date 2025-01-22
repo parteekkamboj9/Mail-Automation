@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mail Automation App</title>
+</head>
+<body>
+    <a href="javascript:window.history.go(-1)">Back</a>
+    <h1>Result</h1>
+    {% if result.value %}
+        <h3>Total Mail: {{ result.value|length }}</h3>
+        {% for data in result.value %}
+            <div>
+                <strong>Name: </strong><p>{{data.from.emailAddress.name}}</p>
+                <strong>Mail: </strong><p>{{data.from.emailAddress.address}}</p>
+                <p><strong>Has Attachments: </strong>{{data.hasAttachments}}</p>
+                <p><strong>Sent Date/Time: </strong>{{data.sentDateTime}}</p>
+                <p><strong>Received Date/Time: </strong>{{data.receivedDateTime}}</p>
+                <strong>Body: </strong><pre>{{data.bodyPreview}}</pre>
+                <button type="submit" class="autoReplyBtn" id="{{data.id}}">Send Reply</button>
+                <hr/>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+<script>
+    // Function to handle sending a reply
+    function sendReply(id, body, to_email) {
+        // Define the API endpoint (replace this with the actual API endpoint)
+        const apiEndpoint = '{{ url_for('chat_reply') }}';
+
+        // Prepare the data to be sent (body and ID)
+        const requestData = {
+            messageId: id,
+            token: '{{token}}',
+            to_email: to_email,
+            replyBody: body
+        };
+
+        // Send the request via fetch (or you could use XMLHttpRequest)
+        fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the API
+            if (data.success) {
+                alert('Reply sent successfully!');
+            } else {
+                alert('Failed to send reply');
+            }
+            // window.location.reload()
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error sending reply');
+        });
+    }
+
+    // Adding event listeners to buttons dynamically
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all reply buttons
+        const replyButtons = document.querySelectorAll('.autoReplyBtn');
+
+        // Iterate over each button and add a click event listener
+        replyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Extract the email body and message ID
+                const messageId = this.id; // This is the data.id from your loop
+                const emailBody = this.previousElementSibling.innerText.trim();
+                const emailTo = this.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText.trim();
+
+                // Call the sendReply function with the messageId and emailBody
+                sendReply(messageId, emailBody, emailTo);
+            });
+        });
+    });
+</script>
+</html>
