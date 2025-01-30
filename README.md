@@ -127,3 +127,12 @@ Open your web browser and go to `http://localhost:5000` to access the applicatio
 
 ---
 **Note**: Ensure you have Python 3.10 and all required dependencies installed to avoid compatibility issues.
+
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
+
+## Contact
+
+If you have any questions or suggestions, feel free to contact me at `parteekkamboj@gmail.com`.
