@@ -6,3 +6,6 @@ werkzeug>=2
 requests>=2,<3
 identity>=0.2,<0.3
 python-dotenv<0.22
+langchain==0.3.17
+langchain-openai==0.3.3
+langchain-pinecone==0.2.2
