@@ -26,7 +26,12 @@ auth = identity.web.Auth(
 )
 
 
-@app.route("/login")
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route("/sign-in")
 def login():
     return render_template("login.html", version=identity.__version__, **auth.log_in(
         scopes=app_config.SCOPE, # Have user consent to scopes during log-in
@@ -97,4 +102,4 @@ def chat_reply():
 
 
 if __name__ == "__main__":
-    app.run(host='localhost')
+    app.run(host='localhost', debug=True)

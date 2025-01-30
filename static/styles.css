@@ -1,0 +1,30 @@
+/* styles.css */
+body {
+    color: #000;
+    font-family: 'Montserrat', sans-serif !important;
+}
+h1,h2,h3,h4,h5,h6 {
+    color: #8354d1;
+}
+
+.text-primary {
+    color: #8354d1 !important;
+}
+
+.bg-primary {
+    background-color: #8354d1 !important;
+}
+
+button {
+    color: #fff !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    background-color: #8354d1 !important;
+    transition: background-color 0.3s ease, border-radius 0.3s ease !important;
+}
+button:hover {
+    border-radius: 4px !important;
+    background-color: #7c44dd !important;
+}
+
+
