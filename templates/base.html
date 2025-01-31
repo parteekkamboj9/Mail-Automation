@@ -41,11 +41,9 @@
     </section>
 {% endblock %}
 
-    <main class="container mx-auto p-4">
-        {% block content %}
-        <!-- Content will be injected here -->
-        {% endblock %}
-    </main>
+{% block content %}
+<!-- Content will be injected here -->
+{% endblock %}
 
 {% block footer %}
     <section class="bg-primary">

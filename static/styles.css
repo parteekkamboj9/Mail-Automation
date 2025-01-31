@@ -27,4 +27,14 @@ button:hover {
     background-color: #7c44dd !important;
 }
 
+input {
+    padding: 6px 8px !important
+}
+
+.loginBg {
+    background-image: url('img/2881377.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
